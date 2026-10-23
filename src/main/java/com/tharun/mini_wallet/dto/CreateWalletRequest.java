@@ -30,5 +30,4 @@ public record CreateWalletRequest(
         )
         BigDecimal initialBalance
 
-) {
-}
+) {}

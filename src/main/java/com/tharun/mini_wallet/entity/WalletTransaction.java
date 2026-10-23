@@ -2,11 +2,14 @@
 package com.tharun.mini_wallet.entity;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.Check;
+
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "wallet_transaction")
+@Check(constraints = "amount > 0")
 public class WalletTransaction {
 
     @Id
@@ -17,16 +20,18 @@ public class WalletTransaction {
     @JoinColumn(name = "wallet_id", nullable = false)
     private Wallet wallet;
 
-    @Column(nullable = false)
-    private String type;
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false, length = 20)
+    private TransactionType type;
 
     @Column(nullable = false, precision = 19, scale = 2)
     private BigDecimal amount;
 
-    @Column(nullable = false)
-    private String status;
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false, length = 20)
+    private TransactionStatus status;
 
-    @Column(name = "reference_id")
+    @Column(name = "reference_id", length = 36)
     private String referenceId;
 
     @Column(name = "created_at", nullable = false, updatable = false)
@@ -52,11 +57,11 @@ public class WalletTransaction {
         this.wallet = wallet;
     }
 
-    public String getType() {
+    public TransactionType getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(TransactionType type) {
         this.type = type;
     }
 
@@ -68,11 +73,11 @@ public class WalletTransaction {
         this.amount = amount;
     }
 
-    public String getStatus() {
+    public TransactionStatus getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(TransactionStatus status) {
         this.status = status;
     }
 

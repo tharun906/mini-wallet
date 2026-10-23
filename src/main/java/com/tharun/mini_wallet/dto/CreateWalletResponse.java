@@ -8,5 +8,4 @@ public record CreateWalletResponse(
         String name,
         String email,
         BigDecimal balance
-) {
-}
+) {}

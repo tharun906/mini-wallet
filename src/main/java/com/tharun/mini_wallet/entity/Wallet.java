@@ -1,22 +1,25 @@
+
 package com.tharun.mini_wallet.entity;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.Check;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "wallet")
+@Check(constraints = "balance >= 0")
 public class Wallet {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 100)
     private String name;
 
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false, unique = true, length = 254)
     private String email;
 
     @Column(nullable = false, precision = 19, scale = 2)
@@ -25,7 +28,6 @@ public class Wallet {
     @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt;
 
-    // Required by JPA
     public Wallet() {
     }
 

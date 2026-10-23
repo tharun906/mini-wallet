@@ -1,5 +1,5 @@
-package com.tharun.mini_wallet.dto;
 
+package com.tharun.mini_wallet.dto;
 
 import java.math.BigDecimal;
 
