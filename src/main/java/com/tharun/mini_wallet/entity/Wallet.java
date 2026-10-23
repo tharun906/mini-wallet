@@ -26,7 +26,7 @@ public class Wallet {
     private LocalDateTime createdAt;
 
     // Required by JPA
-    protected Wallet() {
+    public Wallet() {
     }
 
     @PrePersist
